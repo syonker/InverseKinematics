@@ -27,6 +27,7 @@
     <ClCompile Include="Keyframe.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Point.cpp" />
     <ClCompile Include="Rig.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Skeleton.cpp" />
@@ -46,6 +47,7 @@
     <ClInclude Include="Keyframe.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Point.h" />
     <ClInclude Include="Rig.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Skeleton.h" />

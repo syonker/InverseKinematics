@@ -17,6 +17,7 @@
 #include "Channel.h"
 #include "Keyframe.h"
 #include "Player.h"
+#include "Point.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -54,12 +55,8 @@ private:
 	ShaderProgram *Program;
 	Camera *Cam;
 
-	Rig* currRig;
-	Animation* currAnimation;
-	Player* currPlayer;
-
-	bool drawSkel;
-	bool drawSkin;
+	Point* Goal;
+	
 
 };
 
