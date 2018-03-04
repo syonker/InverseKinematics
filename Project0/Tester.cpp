@@ -165,6 +165,8 @@ void Tester::MouseMotion(int nx,int ny) {
 	int maxDelta=100;
 	int dx = glm::clamp(nx - MouseX,-maxDelta,maxDelta);
 	int dy = glm::clamp(-(ny - MouseY),-maxDelta,maxDelta);
+	glm::mat4 T;
+	glm::vec4 pos;
 
 	MouseX = nx;
 	MouseY = ny;
@@ -172,14 +174,30 @@ void Tester::MouseMotion(int nx,int ny) {
 	// Move camera
 	// NOTE: this should really be part of Camera::Update()
 	if(LeftDown) {
-		const float rate=1.0f;
-		Cam->SetAzimuth(Cam->GetAzimuth()+dx*rate);
-		Cam->SetIncline(glm::clamp(Cam->GetIncline()-dy*rate,-90.0f,90.0f));
+
+		//const float rate=1.0f;
+		//Cam->SetAzimuth(Cam->GetAzimuth()+dx*rate);
+		//Cam->SetIncline(glm::clamp(Cam->GetIncline()-dy*rate,-90.0f,90.0f));
+
+		T = glm::translate(glm::mat4(1.0f), glm::vec3(((float)dx) / 100.0f, ((float)dy) / 100.0f, 0.0f));
+
+		pos = { Goal->Position, 1.0f };
+		pos = T * pos;
+		Goal->Position = {pos.x,pos.y,pos.z};
+
 	}
-	if(RightDown) {
-		const float rate=0.005f;
-		float dist=glm::clamp(Cam->GetDistance()*(1.0f-dx*rate),0.01f,1000.0f);
-		Cam->SetDistance(dist);
+	else if(RightDown) {
+
+		//const float rate=0.005f;
+		//float dist=glm::clamp(Cam->GetDistance()*(1.0f-dx*rate),0.01f,1000.0f);
+		//Cam->SetDistance(dist);
+
+		T = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f,0.0f, ((float)dx) / 100.0f));
+
+		pos = { Goal->Position, 1.0f };
+		pos = T * pos;
+		Goal->Position = { pos.x,pos.y,pos.z };
+
 	}
 }
 
