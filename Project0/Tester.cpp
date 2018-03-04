@@ -68,6 +68,8 @@ Tester::Tester(const char *windowTitle,int argc,char **argv) {
 
 	Goal = new Point(0,0,0);
 
+	moveCam = false;
+
 	
 
 }
@@ -142,6 +144,14 @@ void Tester::Keyboard(int key,int x,int y) {
 		case 'r':
 			Reset();
 			break;
+		case 'c':
+			if (moveCam) {
+				moveCam = false;
+			}
+			else {
+				moveCam = true;
+			}
+			break;
 	}
 }
 
@@ -167,6 +177,7 @@ void Tester::MouseMotion(int nx,int ny) {
 	int dy = glm::clamp(-(ny - MouseY),-maxDelta,maxDelta);
 	glm::mat4 T;
 	glm::vec4 pos;
+	float sensitivity = 150.0f;
 
 	MouseX = nx;
 	MouseY = ny;
@@ -175,28 +186,42 @@ void Tester::MouseMotion(int nx,int ny) {
 	// NOTE: this should really be part of Camera::Update()
 	if(LeftDown) {
 
-		//const float rate=1.0f;
-		//Cam->SetAzimuth(Cam->GetAzimuth()+dx*rate);
-		//Cam->SetIncline(glm::clamp(Cam->GetIncline()-dy*rate,-90.0f,90.0f));
+		if (moveCam) {
 
-		T = glm::translate(glm::mat4(1.0f), glm::vec3(((float)dx) / 100.0f, ((float)dy) / 100.0f, 0.0f));
+			const float rate=1.0f;
+			Cam->SetAzimuth(Cam->GetAzimuth()+dx*rate);
+			Cam->SetIncline(glm::clamp(Cam->GetIncline()-dy*rate,-90.0f,90.0f));
 
-		pos = { Goal->Position, 1.0f };
-		pos = T * pos;
-		Goal->Position = {pos.x,pos.y,pos.z};
+		}
+		else {
+
+			T = glm::translate(glm::mat4(1.0f), glm::vec3(((float)dx) / sensitivity, ((float)dy) / sensitivity, 0.0f));
+
+			pos = { Goal->Position, 1.0f };
+			pos = T * pos;
+			Goal->Position = { pos.x,pos.y,pos.z };
+
+		}
 
 	}
 	else if(RightDown) {
 
-		//const float rate=0.005f;
-		//float dist=glm::clamp(Cam->GetDistance()*(1.0f-dx*rate),0.01f,1000.0f);
-		//Cam->SetDistance(dist);
+		if (moveCam) {
 
-		T = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f,0.0f, ((float)dx) / 100.0f));
+			const float rate=0.005f;
+			float dist=glm::clamp(Cam->GetDistance()*(1.0f-dx*rate),0.01f,1000.0f);
+			Cam->SetDistance(dist);
 
-		pos = { Goal->Position, 1.0f };
-		pos = T * pos;
-		Goal->Position = { pos.x,pos.y,pos.z };
+		}
+		else {
+
+			T = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, ((float)dx) / sensitivity));
+
+			pos = { Goal->Position, 1.0f };
+			pos = T * pos;
+			Goal->Position = { pos.x,pos.y,pos.z };
+
+		}
 
 	}
 }

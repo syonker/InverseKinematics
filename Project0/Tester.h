@@ -56,6 +56,8 @@ private:
 	Camera *Cam;
 
 	Point* Goal;
+
+	bool moveCam;
 	
 
 };
