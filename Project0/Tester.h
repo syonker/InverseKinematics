@@ -18,6 +18,8 @@
 #include "Keyframe.h"
 #include "Player.h"
 #include "Point.h"
+#include "Chain.h"
+#include "Link.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -56,6 +58,7 @@ private:
 	Camera *Cam;
 
 	Point* Goal;
+	Chain* MainChain;
 
 	bool moveCam;
 	

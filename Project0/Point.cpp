@@ -6,7 +6,7 @@ Point::Point(float x, float y, float z)
 {
 	Position = {x,y,z};
 	model = new Model();
-	offset = { 0.1f,0.1f,0.1f };
+	offset = { 0.5f,0.5f,0.5f };
 	model->MakeBox(Position - offset, Position + offset);
 }
 

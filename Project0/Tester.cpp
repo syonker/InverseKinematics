@@ -66,11 +66,11 @@ Tester::Tester(const char *windowTitle,int argc,char **argv) {
 	Cam=new Camera;
 	Cam->SetAspect(float(WinX)/float(WinY));
 
-	Goal = new Point(0,0,0);
+	Goal = new Point(0, 0, 0);
+	MainChain = new Chain(5, Goal);
 
-	moveCam = false;
 
-	
+	moveCam = true;
 
 }
 
@@ -91,6 +91,7 @@ void Tester::Update() {
 	Cam->Update();
 
 	Goal->Update();
+	MainChain->Update(glm::mat4(1.0f));
 
 	// Tell glut to re-display the scene
 	glutSetWindow(WindowHandle);
@@ -112,6 +113,7 @@ void Tester::Draw() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	Goal->Draw(Cam->GetViewProjectMtx(), Program->GetProgramID());
+	MainChain->Draw(Cam->GetViewProjectMtx(), Program->GetProgramID());
 
 	// Finish drawing scene
 	glFinish();

@@ -38,10 +38,8 @@ in vec3 fragNormal;
 //uniform vec3 AmbientColor=vec3(0.2);
 uniform vec3 AmbientColor;
 uniform vec3 LightDirection=normalize(vec3(0,0,1));
-uniform vec3 LightColor=vec3(1,1,0);
+uniform vec3 LightColor=vec3(1,1,1);
 uniform vec3 DiffuseColor=vec3(0.5);
-uniform vec3 LightDirection2=normalize(vec3(1,0,0));
-uniform vec3 LightColor2=vec3(0,1,1);
 
 out vec3 finalColor;
 
@@ -52,10 +50,6 @@ out vec3 finalColor;
 void main() {
 	// Compute irradiance (sum of ambient & direct lighting)
 	vec3 irradiance=AmbientColor + LightColor * max(0,dot(LightDirection,fragNormal));
-
-	vec3 irradiance2=AmbientColor + LightColor2 * max(0,dot(LightDirection2,fragNormal));
-
-	irradiance = (irradiance+irradiance2)*0.5f;
 
 	// Diffuse reflectance
 	vec3 reflectance=irradiance * DiffuseColor;
