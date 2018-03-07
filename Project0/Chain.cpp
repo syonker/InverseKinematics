@@ -38,3 +38,9 @@ void Chain::Draw(const glm::mat4 &viewProjMtx, uint shader) {
 	Root->Draw(viewProjMtx, shader);
 
 }
+
+void Chain::TestDOFChange(unsigned int link, unsigned int dof, float value) {
+
+	Links[link]->arrayDOF[dof]->SetValue(value);
+
+}

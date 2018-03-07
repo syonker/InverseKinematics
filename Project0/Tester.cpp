@@ -154,6 +154,9 @@ void Tester::Keyboard(int key,int x,int y) {
 				moveCam = true;
 			}
 			break;
+		case 't':
+			MainChain->TestDOFChange(3,2,0.5f);
+			break;
 	}
 }
 
