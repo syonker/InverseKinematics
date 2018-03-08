@@ -67,7 +67,7 @@ Tester::Tester(const char *windowTitle,int argc,char **argv) {
 	Cam->SetAspect(float(WinX)/float(WinY));
 
 	Goal = new Point(0, 0, 0);
-	MainChain = new Chain(5, Goal);
+	MainChain = new Chain(6, Goal);
 
 
 	moveCam = true;
@@ -92,6 +92,7 @@ void Tester::Update() {
 
 	Goal->Update();
 	MainChain->Update(glm::mat4(1.0f));
+	MainChain->IK(glm::mat4(1.0f));
 
 	// Tell glut to re-display the scene
 	glutSetWindow(WindowHandle);
@@ -153,6 +154,9 @@ void Tester::Keyboard(int key,int x,int y) {
 			else {
 				moveCam = true;
 			}
+			break;
+		case 'o':
+			MainChain->ToggleIK();
 			break;
 		case 't':
 			MainChain->TestDOFChange(0,2,0.5f);

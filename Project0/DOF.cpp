@@ -48,3 +48,4 @@ float DOF::Add(float addVal) {
 	return value;
 
 }
+

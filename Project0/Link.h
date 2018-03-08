@@ -12,8 +12,9 @@ public:
 	~Link();
 
 	void AddChild(Link* newChild);
-	void Update(glm::mat4 parentW);
+	void Update(glm::mat4 parentW, glm::vec3* endEffector);
 	void Draw(const glm::mat4 &viewProjMtx, uint shader);
+	void IK(glm::mat4 parentW, glm::vec3 endEffector, glm::vec3 goal);
 
 	std::vector<Link*> children;
 	std::vector<DOF*> arrayDOF;
@@ -25,6 +26,9 @@ public:
 	glm::mat4 L;
 	glm::mat4 W;
 	Model* model;
+	float threshold;
+
+	bool lastLink;
 
 };
 
