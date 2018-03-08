@@ -186,7 +186,7 @@ void Tester::MouseMotion(int nx,int ny) {
 	int dy = glm::clamp(-(ny - MouseY),-maxDelta,maxDelta);
 	glm::mat4 T;
 	glm::vec4 pos;
-	float sensitivity = 150.0f;
+	float sensitivity = 50.0f;
 
 	MouseX = nx;
 	MouseY = ny;

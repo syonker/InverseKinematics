@@ -97,14 +97,16 @@ void Link::Update(glm::mat4 parentW, glm::vec3* endEffector) {
 
 void Link::Draw(const glm::mat4 &viewProjMtx, uint shader) {
 
-	model->Draw(W, viewProjMtx, shader);
+	if (!lastLink) {
 
-	for (unsigned int i = 0; i < children.size(); i++) {
+		model->Draw(W, viewProjMtx, shader);
 
-		children[i]->Draw(viewProjMtx, shader);
+		for (unsigned int i = 0; i < children.size(); i++) {
 
+			children[i]->Draw(viewProjMtx, shader);
+
+		}
 	}
-
 }
 
 void Link::IK(glm::mat4 parentW, glm::vec3 endEffector, glm::vec3 goal) {
