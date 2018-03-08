@@ -155,7 +155,7 @@ void Tester::Keyboard(int key,int x,int y) {
 			}
 			break;
 		case 't':
-			MainChain->TestDOFChange(3,2,0.5f);
+			MainChain->TestDOFChange(0,2,0.5f);
 			break;
 	}
 }

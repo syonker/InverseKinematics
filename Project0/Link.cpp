@@ -6,9 +6,10 @@ Link::Link(unsigned int index)
 {
 
 	position = { 0.0f, 0.0f, 0.0f };
-	glm::vec3 size = { 1.0f,0.5f,0.5f };
-	boxmin = position - size;
-	boxmax = position + size;
+	glm::vec3 minOffset = { 0.0f,0.5f,0.5f };
+	glm::vec3 maxOffset = { 2.0f,0.5f,0.5f };
+	boxmin = position - minOffset;
+	boxmax = position + maxOffset;
 	model = new Model();
 	model->MakeBox(boxmin, boxmax);
 	model->ambient = ((float)(index+1) / 5.0f) * model->ambient;
