@@ -33,7 +33,7 @@ Link::Link(unsigned int index)
 	arrayDOF.push_back(zDOF);
 
 	//max radians than it can rotate in one update
-	threshold = 0.001f;
+	threshold = 0.0001f;
 	lastLink = false;
 
 }

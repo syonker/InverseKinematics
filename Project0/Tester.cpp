@@ -67,7 +67,7 @@ Tester::Tester(const char *windowTitle,int argc,char **argv) {
 	Cam->SetAspect(float(WinX)/float(WinY));
 
 	Goal = new Point(0, 0, 0);
-	MainChain = new Chain(6, Goal);
+	MainChain = new Chain(20, Goal);
 
 
 	moveCam = true;
