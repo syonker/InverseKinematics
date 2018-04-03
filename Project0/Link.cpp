@@ -162,14 +162,6 @@ void Link::IK(glm::mat4 parentW, glm::vec3 endEffector, glm::vec3 goal) {
 	glm::vec3 Jy = glm::cross(worldAxisY, (endEffector - pivotPos));
 	glm::vec3 Jz = glm::cross(worldAxisZ, (endEffector - pivotPos));
 
-	/*
-	glm::mat3 J = { Jx,Jy,Jz };
-	J = glm::transpose(J);
-	Jx = J[0];
-	Jy = J[1];
-	Jz = J[2];
-	*/
-
 	//calculate step size
 	glm::vec3 deltaE = goal - endEffector;
 
@@ -184,8 +176,6 @@ void Link::IK(glm::mat4 parentW, glm::vec3 endEffector, glm::vec3 goal) {
 	float deltaZ = glm::dot(Jz, deltaE);
 	beta = threshold / (glm::max(threshold, glm::abs(deltaZ)));
 	arrayDOF[2]->SetValue((arrayDOF[2]->GetValue() + (beta * deltaZ)));
-
-
 
 
 	for (unsigned int i = 0; i < children.size(); i++) {

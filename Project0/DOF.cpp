@@ -24,12 +24,6 @@ float DOF::GetValue() {
 
 }
 
-void DOF::SetMinMax(float minValue, float maxValue) {
-
-	min = minValue;
-	max = maxValue;
-
-}
 
 float DOF::Add(float addVal) {
 

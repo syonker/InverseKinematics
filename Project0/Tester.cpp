@@ -69,7 +69,6 @@ Tester::Tester(const char *windowTitle,int argc,char **argv) {
 	Goal = new Point(0, 0, 0);
 	MainChain = new Chain(20, Goal);
 
-
 	moveCam = true;
 
 }
