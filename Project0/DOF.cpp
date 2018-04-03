@@ -4,11 +4,8 @@
 
 DOF::DOF()
 {
-	//set default values
+	//set default value
 	value = 0.0f;
-	min = -100000.0f;
-	max = 100000.0f;
-
 }
 
 DOF::~DOF()
@@ -16,13 +13,6 @@ DOF::~DOF()
 }
 
 void DOF::SetValue(float newValue) {
-
-	//if (newValue < min) {
-	//	newValue = min;
-	//}
-	//else if (newValue > max) {
-	//	newValue = max;
-	//}
 
 	value = newValue;
 
